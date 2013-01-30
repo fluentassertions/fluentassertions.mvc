@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using System.Diagnostics;
-using FluentAssertions.Assertions;
+using FluentAssertions.Primitives;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
     public class PartialViewResultAssertions : ObjectAssertions

@@ -1,9 +1,10 @@
+using FluentAssertions.Primitives;
+using FluentAssertions.Execution;
 using System;
 using System.Web.Mvc;
-using FluentAssertions.Assertions;
 using System.Diagnostics;
 
-namespace FluentAssertions.Mvc3
+namespace FluentAssertions.Mvc
 {
     [DebuggerNonUserCode]
 	public class ActionResultAssertions : ObjectAssertions
