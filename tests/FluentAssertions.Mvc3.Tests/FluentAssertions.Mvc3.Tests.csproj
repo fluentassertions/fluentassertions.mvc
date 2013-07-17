@@ -51,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentResultAssertions_Tests.cs" />
+    <Compile Include="ControllerAssertions_Tests.cs" />
     <Compile Include="FailureMessageHelper_Tests.cs" />
+    <Compile Include="Fakes\FakeAdminController.cs" />
     <Compile Include="Helpers\FailureMessageHelper.cs" />
     <Compile Include="PartialViewResultAssertions_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

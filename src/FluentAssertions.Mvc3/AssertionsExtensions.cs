@@ -19,5 +19,10 @@ namespace FluentAssertions.Mvc
         {
             return new RouteDataAssertions(routeData);
         }
+
+        public static ControllerAssertions Should(this Controller controller)
+        {
+            return new ControllerAssertions(controller);
+        }
 	}
 }
