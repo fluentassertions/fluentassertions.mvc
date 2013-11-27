@@ -1,8 +1,6 @@
 using System;
 using NUnit.Framework;
-using FluentAssertions.Mvc.Tests.Fakes;
 using System.Web.Mvc;
-using FluentAssertions.Mvc;
 using System.Web.Routing;
 
 namespace FluentAssertions.Mvc.Tests
