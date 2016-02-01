@@ -1,0 +1,25 @@
+﻿{
+  "version": "0.7.0-beta1",
+  "description": "FluentAssertions.Mvc6",
+  "authors": [ "Casey Burns", "Kevin Kuszyk" ],
+  "tags": [ "" ],
+  "projectUrl": "https://github.com/CaseyBurns/FluentAssertions.MVC",
+  "licenseUrl": "https://github.com/CaseyBurns/FluentAssertions.MVC/blob/master/license.txt",
+  "shared": "../FluentAssertions.Mvc.Shared/**/*.cs",
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "FluentAssertions": "4.1.0"
+  },
+  "frameworks": {
+    "net451": { },
+    "dnxcore50": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516"
+      }
+    }
+  }
+}
