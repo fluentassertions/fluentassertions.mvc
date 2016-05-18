@@ -29,6 +29,7 @@
     <IISExpressUseClassicPipelineMode />
     <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -189,15 +190,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FluentAssertions.Mvc3\FluentAssertions.Mvc3.csproj">
-      <Project>{53589F79-0908-409A-8366-3E18DC637600}</Project>
+    <ProjectReference Include="..\..\src\FluentAssertions.Mvc3\FluentAssertions.Mvc3.xproj">
+      <Project>{8e27b1fb-475c-4897-ae48-75785b85ad8e}</Project>
       <Name>FluentAssertions.Mvc3</Name>
     </ProjectReference>
   </ItemGroup>
