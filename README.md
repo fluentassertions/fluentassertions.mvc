@@ -9,11 +9,7 @@ Add the NuGet package which matches the version of MVC you are using to your tes
 
 ### MVC Core
 
-Add the [MVC Core][nuget-mvc-core] NuGet package to your unit test project:
-
-````
-PM> FluentAssertions.AspNetCore.Mvc -Pre
-````
+Fluent Assertions for MVC Core is now in a seperate repository over at [kevinkuszyk/FluentAssertions.AspNetCore.Mvc](https://github.com/kevinkuszyk/FluentAssertions.AspNetCore.Mvc).
 
 ### MVC 5
 
@@ -64,4 +60,3 @@ public void Index_Action_Returns_View()
 [nuget-mvc3]: https://www.nuget.org/packages/FluentAssertions.Mvc3
 [nuget-mvc4]: https://www.nuget.org/packages/FluentAssertions.Mvc4
 [nuget-mvc5]: https://www.nuget.org/packages/FluentAssertions.Mvc5
-[nuget-mvc-core]: https://www.nuget.org/packages/FluentAssertions.AspNetCore.Mvc
