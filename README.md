@@ -1,7 +1,7 @@
-# Project Description
+# Fluent Assertions for ASP.NET MVC
 [![Build status](https://ci.appveyor.com/api/projects/status/wlt5yp8m66y9rw4f?svg=true)](https://ci.appveyor.com/project/kevinkuszyk/fluentassertions-mvc)
 
-Fluent Assertions for MVC is a set of MVC focused assertions and helper extensions to the excellent [Fluent Assertions][fa-home] library.
+This repro contains the Fluent Assertions extensions for ASP.NET MVC.  It is maintained by [@kevinkuszyk](https://github.com/kevinkuszyk).
 
 ## Installation
 
@@ -9,7 +9,7 @@ Add the NuGet package which matches the version of MVC you are using to your tes
 
 ### MVC Core
 
-Fluent Assertions for MVC Core is now in a seperate repository over at [kevinkuszyk/FluentAssertions.AspNetCore.Mvc](https://github.com/kevinkuszyk/FluentAssertions.AspNetCore.Mvc).
+Fluent Assertions for MVC Core is now in a seperate repository over at [fluentassertions/fluentAssertions.aspnetcore.mvc](https://github.com/fluentassertions/fluentAssertions.aspnetcore.mvc).
 
 ### MVC 5
 
@@ -55,7 +55,10 @@ public void Index_Action_Returns_View()
 
 ````
 
-[fa-home]: https://github.com/dennisdoomen/FluentAssertions
+## Building 
+
+Simply clone this repro and build the `FluentAssertionsMvc.sln` solution.
+
 [fa-frameworks]: https://github.com/dennisdoomen/fluentassertions/wiki/Documentation#supported-test-frameworks
 [nuget-mvc3]: https://www.nuget.org/packages/FluentAssertions.Mvc3
 [nuget-mvc4]: https://www.nuget.org/packages/FluentAssertions.Mvc4
