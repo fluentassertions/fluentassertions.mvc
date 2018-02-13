@@ -51,7 +51,7 @@ namespace FluentAssertions.Mvc.Tests
             };
 #endif
             Action a = () => result.Should().BePartialViewResult().Model.Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace FluentAssertions.Mvc.Tests
             };
 #endif
             Action a = () => result.Should().BePartialViewResult().ModelAs<string>().Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Test]
@@ -95,7 +95,7 @@ namespace FluentAssertions.Mvc.Tests
             };
 #endif
             Action a = () => result.Should().BePartialViewResult().ModelAs<int>().Should().Be(2);
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace FluentAssertions.Mvc.Tests
                 result.Should().BePartialViewResult().ModelAs<Object>();
             };
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
     }
