@@ -81,7 +81,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <see paramref="reason" />.
         /// </param>
         public RedirectToRouteAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
@@ -98,7 +98,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <see paramref="reason" />.
         /// </param>
         public RedirectToRouteAssertions WithController(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
@@ -132,7 +132,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <see paramref="reason" />.
         /// </param>
         public RedirectToRouteAssertions WithArea(string expectedArea, string reason = "", params object[] reasonArgs)
         {
@@ -143,7 +143,7 @@ namespace FluentAssertions.Mvc
         /// <summary>
         /// Returns the type of the subject the assertion applies on.
         /// </summary>
-        protected override string Context
+        protected override string Identifier
         {
             get { return "RedirectToRouteResult"; }
         }
