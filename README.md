@@ -1,15 +1,36 @@
-#Project Description
+# Fluent Assertions for ASP.NET MVC
+[![Build status](https://ci.appveyor.com/api/projects/status/wlt5yp8m66y9rw4f?svg=true)](https://ci.appveyor.com/project/kevinkuszyk/fluentassertions-mvc)
 
-FluentAssertions MVC is a set of MVC focused assertions and helper extensions to the excellent [FluentAssertions][fa-home] library.
+This repro contains the Fluent Assertions extensions for ASP.NET MVC.  It is maintained by [@kevinkuszyk](https://github.com/kevinkuszyk).
 
 ## Installation
 
-For MVC 4 or 5 projects, add the [MVC 4][nuget-mvc4] NuGet package to your unit test project:
+Add the NuGet package which matches the version of MVC you are using to your test project.
+
+### MVC Core
+
+Fluent Assertions for MVC Core is now in a seperate repository over at [fluentassertions/fluentAssertions.aspnetcore.mvc](https://github.com/fluentassertions/fluentAssertions.aspnetcore.mvc).
+
+### MVC 5
+
+Add the [MVC 5][nuget-mvc5] NuGet package to your unit test project:
+
+````
+PM> Install-Package FluentAssertions.Mvc5
+````
+
+### MVC 4
+
+Add the [MVC 4][nuget-mvc4] NuGet package to your unit test project:
 
 ````
 PM> Install-Package FluentAssertions.Mvc4
 ````
-There is also an [MVC 3][nuget-mvc3] package:
+
+### MVC 3
+
+Add the [MVC 3][nuget-mvc3] NuGet package to your unit test project:
+
 ````
 PM> Install-Package FluentAssertions.Mvc3
 ````
@@ -34,22 +55,11 @@ public void Index_Action_Returns_View()
 
 ````
 
-## Continuous Integration
+## Building 
 
-The [build][1] is generously hosted and run on the [CodeBetter TeamCity][2] infrastructure, courtesy of [JetBrains](http://www.jetbrains.com/).
+Simply clone this repro and build the `FluentAssertionsMvc.sln` solution.
 
-|  | Status of last build |
-| :------ | :------: |
-| **master** | [![master][3]][4] |
- 
- [1]: http://teamcity.codebetter.com/project.html?projectId=project396&guest=1
- [2]: http://codebetter.com/codebetter-ci/
- [3]: http://teamcity.codebetter.com/app/rest/builds/buildType:(id:bt1090)/statusIcon
- [4]: http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1090&guest=1
-
-![YouTrack and TeamCity](http://www.jetbrains.com/img/banners/Codebetter300x250.png)
-
-[fa-home]: https://github.com/dennisdoomen/FluentAssertions
 [fa-frameworks]: https://github.com/dennisdoomen/fluentassertions/wiki/Documentation#supported-test-frameworks
 [nuget-mvc3]: https://www.nuget.org/packages/FluentAssertions.Mvc3
 [nuget-mvc4]: https://www.nuget.org/packages/FluentAssertions.Mvc4
+[nuget-mvc5]: https://www.nuget.org/packages/FluentAssertions.Mvc5
