@@ -46,7 +46,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action action = () => result.Should().BeViewResult().WithMasterName(expectedMasterName);
 
-            action.ShouldThrow<Exception>()
+            action.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 #endif
@@ -75,7 +75,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action action = () => result.Should().BeViewResult().WithViewName(expectedViewName);
             
-            action.ShouldThrow<Exception>()
+            action.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -128,7 +128,7 @@ namespace FluentAssertions.Mvc.Tests
 #endif
 
             Action a = () => result.Should().BeViewResult().WithTempData("key1", "xyz");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Test]
@@ -144,7 +144,7 @@ namespace FluentAssertions.Mvc.Tests
 #endif
 
             Action a = () => result.Should().BeViewResult().WithTempData("xyz", "value1");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
 
         [Test]
@@ -202,7 +202,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue);
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -224,7 +224,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => result.Should().BeViewResult().WithViewData(expectedKey, "value1");
 
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -256,7 +256,7 @@ namespace FluentAssertions.Mvc.Tests
 #endif
 
             Action a = () => result.Should().BeViewResult().Model.Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
         
         [Test]
@@ -287,7 +287,7 @@ namespace FluentAssertions.Mvc.Tests
 #endif
 
             Action a = () => result.Should().BeViewResult().ModelAs<string>().Should().Be("xyx");
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
         
         [Test]
@@ -303,7 +303,7 @@ namespace FluentAssertions.Mvc.Tests
 #endif
 
             Action a = () => result.Should().BeViewResult().ModelAs<int>().Should().Be(2);
-            a.ShouldThrow<Exception>();
+            a.Should().Throw<Exception>();
         }
         
         [Test]
@@ -314,7 +314,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => result.Should().BeViewResult().ModelAs<Object>();
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
         
@@ -342,7 +342,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action action = () => result.Should().BeViewResult().WithDefaultViewName();
 
-            action.ShouldThrow<Exception>()
+            action.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
     }
