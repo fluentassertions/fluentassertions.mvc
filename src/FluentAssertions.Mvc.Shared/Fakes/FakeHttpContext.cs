@@ -4,17 +4,26 @@ using System.Web;
 
 namespace FluentAssertions.Mvc.Fakes
 {
+    /// <summary>
+    /// Mimics a <see cref="HttpContextBase"/>.  For use in testing.
+    /// </summary>
     public class FakeHttpContext : HttpContextBase
     {
         private FakeHttpRequest _request;
         private FakeHttpResponse _response;
 
+        /// <summary>
+        /// Creates a new instance of <see cref="FakeHttpContext"/>
+        /// </summary>
+        /// <param name="appPath"></param>
+        /// <param name="relativeUrl"></param>
         public FakeHttpContext(string appPath, string relativeUrl)
         {
             _request = new FakeHttpRequest(appPath, relativeUrl);
             _response = new FakeHttpResponse();
         }
 
+        /// <inheritdoc />
         public override HttpRequestBase Request
         {
             get
@@ -23,6 +32,7 @@ namespace FluentAssertions.Mvc.Fakes
             }
         }
 
+        /// <inheritdoc />
         public override HttpResponseBase Response
         {
             get
@@ -31,6 +41,7 @@ namespace FluentAssertions.Mvc.Fakes
             }
         }
 
+        /// <inheritdoc />
         public override object GetService(Type serviceType)
         {
             return new FakeHttpWorkerRequest();
