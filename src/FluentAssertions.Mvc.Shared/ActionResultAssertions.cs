@@ -16,8 +16,14 @@ namespace FluentAssertions.Mvc
     [DebuggerNonUserCode]
 	public class ActionResultAssertions : ObjectAssertions
 	{
+        /// <summary>
+        /// Contains fixed values used in assertions
+        /// </summary>
         public struct Constants
         {
+            /// <summary>
+            /// A shared failure message
+            /// </summary>
             public const string CommonFailMessage = "Expected ActionResult to be {0}{reason}, but found {1}";
         }
 
@@ -52,7 +58,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ContentResultAssertions BeContentResult(string reason, params object[] reasonArgs)
         {
@@ -80,7 +86,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public EmptyResult BeEmptyResult(string reason, params object[] reasonArgs)
         {
@@ -108,7 +114,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectToRouteAssertions BeRedirectToRouteResult(string reason, params object[] reasonArgs)
         {
@@ -136,7 +142,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public PartialViewResultAssertions BePartialViewResult(string reason, params object[] reasonArgs)
         {
@@ -164,7 +170,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RedirectResultAssertions BeRedirectResult(string reason, params object[] reasonArgs)
         {
@@ -192,7 +198,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ViewResultAssertions BeViewResult(string reason, params object[] reasonArgs)
 		{

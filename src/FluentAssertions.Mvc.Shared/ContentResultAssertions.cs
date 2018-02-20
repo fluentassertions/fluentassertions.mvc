@@ -33,7 +33,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ContentResultAssertions WithContent(string expectedContent, string reason = "", params object[] reasonArgs)
         {
@@ -60,7 +60,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ContentResultAssertions WithContentType(string expectedContentType, string reason = "", params object[] reasonArgs)
         {
@@ -89,7 +89,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public ContentResultAssertions WithContentEncoding(Encoding expectedEncoding, string reason = "", params object[] reasonArgs)
         {
