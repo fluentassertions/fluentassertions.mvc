@@ -70,6 +70,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithRouteValue_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -80,7 +82,7 @@ namespace FluentAssertions.Mvc.Tests
                     .BeRedirectToRouteResult()
                     .WithRouteValue("Id", "11");
             a.Should().Throw<Exception>()
-                    .WithMessage("Expected Subject.RouteValues to contain value \"11\" at key \"Id\", but found \"22\".");            
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"11\" at key \"Id\", but found \"22\".");            
         }
 
         [Test]
@@ -100,6 +102,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithController_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -110,7 +114,7 @@ namespace FluentAssertions.Mvc.Tests
                     .BeRedirectToRouteResult()
                     .WithController("xyz");
             a.Should().Throw<Exception>()
-                    .WithMessage("Expected Subject.RouteValues to contain value \"xyz\" at key \"Controller\", but found \"home\".");
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Controller\", but found \"home\".");
         }
 
         [Test]
@@ -130,6 +134,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithAction_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -140,7 +146,7 @@ namespace FluentAssertions.Mvc.Tests
                     .BeRedirectToRouteResult()
                     .WithAction("xyz");
             a.Should().Throw<Exception>()
-                    .WithMessage("Expected Subject.RouteValues to contain value \"xyz\" at key \"Action\", but found \"index\".");
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Action\", but found \"index\".");
         }
 
         [Test]
@@ -160,6 +166,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithArea_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -170,7 +178,29 @@ namespace FluentAssertions.Mvc.Tests
                     .BeRedirectToRouteResult()
                     .WithArea("xyz");
             a.Should().Throw<Exception>()
-                    .WithMessage("Expected Subject.RouteValues to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
         }
+
+        /// <summary>
+        /// Gets the expected subject identifier for the failure message
+        /// </summary>
+        /// <remarks>
+        /// The Fluent Assertions library will attempt to determine the name of the subject from the stack trace.
+        /// This requires the Unit Tests to be compiled in DEBUG mode in order for it to work successfully.
+        /// If it cannot determne the Subject's Identity, it will fall back to a generic value.
+        /// This method is an attempt to cope with the different build configurations
+        /// ref: http://fluentassertions.com/documentation.html#subject-identification
+        /// </remarks>
+        /// <returns></returns>
+        private static string GetSubjectIdentifier()
+        {
+            var subjectIdentifier = "dictionary";
+#if DEBUG
+            subjectIdentifier = "Subject.RouteValues";
+#endif
+            return subjectIdentifier;
+        }
+
+
     }
 }
