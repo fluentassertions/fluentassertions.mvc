@@ -32,7 +32,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => result.Should().BeContentResult().WithContent(expectedContent);
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -53,7 +53,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => result.Should().BeContentResult().WithContentType(expectedContentType);
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -75,7 +75,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => result.Should().BeContentResult().WithContentEncoding(expectedEncoding);
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 #endif

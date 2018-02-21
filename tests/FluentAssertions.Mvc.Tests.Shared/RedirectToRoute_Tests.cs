@@ -29,7 +29,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should()
                     .BeRedirectToRouteResult()
                     .WithPermanent(false);
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage("Expected RedirectToRoute.Permanent to be False, but found True");
         }
 
@@ -49,7 +49,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should()
                     .BeRedirectToRouteResult()
                     .WithRouteName("xyz");
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                 .WithMessage("Expected RedirectToRoute.RouteName to be \"xyz\", but found \"default\"");
         }
 
@@ -70,6 +70,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithRouteValue_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -79,8 +81,8 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should()
                     .BeRedirectToRouteResult()
                     .WithRouteValue("Id", "11");
-            a.ShouldThrow<Exception>()
-                    .WithMessage("Expected dictionary to contain value \"11\" at key \"Id\", but found \"22\".");            
+            a.Should().Throw<Exception>()
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"11\" at key \"Id\", but found \"22\".");            
         }
 
         [Test]
@@ -100,6 +102,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithController_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -109,8 +113,8 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should()
                     .BeRedirectToRouteResult()
                     .WithController("xyz");
-            a.ShouldThrow<Exception>()
-                    .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Controller\", but found \"home\".");
+            a.Should().Throw<Exception>()
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Controller\", but found \"home\".");
         }
 
         [Test]
@@ -130,6 +134,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithAction_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -139,8 +145,8 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should()
                     .BeRedirectToRouteResult()
                     .WithAction("xyz");
-            a.ShouldThrow<Exception>()
-                    .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Action\", but found \"index\".");
+            a.Should().Throw<Exception>()
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Action\", but found \"index\".");
         }
 
         [Test]
@@ -160,6 +166,8 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void WithArea_GivenUnexpected_ShouldFail()
         {
+            var subjectIdentifier = GetSubjectIdentifier();
+
             ActionResult result = new RedirectToRouteResult("", new RouteValueDictionary(
                 new
                 {
@@ -169,8 +177,30 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should()
                     .BeRedirectToRouteResult()
                     .WithArea("xyz");
-            a.ShouldThrow<Exception>()
-                    .WithMessage("Expected dictionary to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
+            a.Should().Throw<Exception>()
+                    .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Area\", but found \"accounts\".");
         }
+
+        /// <summary>
+        /// Gets the expected subject identifier for the failure message
+        /// </summary>
+        /// <remarks>
+        /// The Fluent Assertions library will attempt to determine the name of the subject from the stack trace.
+        /// This requires the Unit Tests to be compiled in DEBUG mode in order for it to work successfully.
+        /// If it cannot determne the Subject's Identity, it will fall back to a generic value.
+        /// This method is an attempt to cope with the different build configurations
+        /// ref: http://fluentassertions.com/documentation.html#subject-identification
+        /// </remarks>
+        /// <returns></returns>
+        private static string GetSubjectIdentifier()
+        {
+            var subjectIdentifier = "dictionary";
+#if DEBUG
+            subjectIdentifier = "Subject.RouteValues";
+#endif
+            return subjectIdentifier;
+        }
+
+
     }
 }

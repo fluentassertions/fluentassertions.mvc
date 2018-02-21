@@ -46,7 +46,7 @@ namespace FluentAssertions.Mvc.Tests
             
             Action a = () => routeData.Should().HaveValue(expectedKey, "");
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -66,7 +66,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => routeData.Should().HaveValue("controller", controllerName);
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
         
@@ -92,7 +92,7 @@ namespace FluentAssertions.Mvc.Tests
             var failureMessage = FailureMessageHelper.Format(FailureMessages.RouteData_Values_HaveValue, "id", id, "44");
 
             Action a = () => routeData.Should().HaveValue("id", id);
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -112,7 +112,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => routeData.Should().HaveController(controllerName);
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -132,7 +132,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => routeData.Should().HaveAction(actionName);
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -145,7 +145,7 @@ namespace FluentAssertions.Mvc.Tests
 
             Action a = () => routeData.Should().HaveDataToken(expectedKey, "");
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
 
@@ -166,7 +166,7 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => routeData.Should().HaveDataToken("area", area);
             
             
-            a.ShouldThrow<Exception>()
+            a.Should().Throw<Exception>()
                     .WithMessage(failureMessage);
         }
     }

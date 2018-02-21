@@ -143,7 +143,7 @@ namespace FluentAssertions.Mvc
         /// <summary>
         /// Returns the type of the subject the assertion applies on.
         /// </summary>
-        protected override string Context
+        protected override string Identifier
         {
             get { return "RedirectToRouteResult"; }
         }
