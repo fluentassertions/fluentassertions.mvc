@@ -14,10 +14,10 @@ using System.Diagnostics;
 
 namespace FluentAssertions.Mvc
 {
-    [DebuggerNonUserCode]
     /// <summary>
     /// Contains a number of methods to assert that a <see cref="RouteData"/> is in the expected state.
     /// </summary>
+    [DebuggerNonUserCode]
     public class RouteDataAssertions : ObjectAssertions
     {
         /// <summary>
@@ -38,7 +38,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RouteDataAssertions HaveController(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
@@ -55,7 +55,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RouteDataAssertions HaveAction(string expectedActionName, string reason = "", params object[] reasonArgs)
         {
@@ -73,7 +73,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RouteDataAssertions HaveDataToken(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
@@ -104,7 +104,7 @@ namespace FluentAssertions.Mvc
         /// is needed. If the phrase does not start with the word <i>because</i>, it is prepended automatically.
         /// </param>
         /// <param name="reasonArgs">
-        /// Zero or more objects to format using the placeholders in <see cref="reason" />.
+        /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
         public RouteDataAssertions HaveValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
