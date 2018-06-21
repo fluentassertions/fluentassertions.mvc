@@ -2,11 +2,7 @@
 using System.Text;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
-#if NETSTANDARD1_6
-using Microsoft.AspNetCore.Mvc;
-#else
 using System.Web.Mvc;
-#endif
 
 namespace FluentAssertions.Mvc
 {
@@ -71,7 +67,6 @@ namespace FluentAssertions.Mvc
             return this;
         }
 
-#if !NETSTANDARD1_6
         /// <summary>
         /// Asserts that the content encoding is the expected content encoding type.
         /// </summary>
@@ -94,7 +89,5 @@ namespace FluentAssertions.Mvc
 
             return this;
         }
-#endif
-
     }
 }
