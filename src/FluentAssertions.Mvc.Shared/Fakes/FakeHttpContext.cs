@@ -1,5 +1,4 @@
-﻿#if !NETSTANDARD1_6
-using System;
+﻿using System;
 using System.Web;
 
 namespace FluentAssertions.Mvc.Fakes
@@ -138,4 +137,3 @@ namespace FluentAssertions.Mvc.Fakes
 
 
 }
-#endif

@@ -1,8 +1,4 @@
-﻿#if !NETSTANDARD1_6
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using System.Web.Mvc;
@@ -159,4 +155,3 @@ namespace FluentAssertions.Mvc
         }
     }
 }
-#endif

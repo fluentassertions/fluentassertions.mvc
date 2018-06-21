@@ -1,10 +1,5 @@
 ﻿using System;
-#if NETCOREAPP1_0
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#else
 using System.Web.Mvc;
-#endif
 using NUnit.Framework;
 
 using FluentAssertions.Mvc.Tests.Helpers;
@@ -28,28 +23,22 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void Model_GivenExpectedValue_ShouldPass()
         {
-#if NETCOREAPP1_0
-            var result = new TestController().PartialViewSimpleModel();
-#else
             ActionResult result = new PartialViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
-#endif
+
             result.Should().BePartialViewResult().Model.Should().Be("hello");
         }
 
         [Test]
         public void Model_GivenUnexpectedValue_ShouldFail()
         {
-#if NETCOREAPP1_0
-            var result = new TestController().PartialViewSimpleModel();
-#else
             ActionResult result = new PartialViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
-#endif
+
             Action a = () => result.Should().BePartialViewResult().Model.Should().Be("xyx");
             a.Should().Throw<Exception>();
         }
@@ -57,28 +46,22 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void ModelAs_GivenExpectedValue_ShouldPass()
         {
-#if NETCOREAPP1_0
-            var result = new TestController().PartialViewSimpleModel();
-#else
             ActionResult result = new PartialViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
-#endif
+
             result.Should().BePartialViewResult().ModelAs<string>().Should().Be("hello");
         }
 
         [Test]
         public void ModelAs_GivenUnexpectedValue_ShouldFail()
         {
-#if NETCOREAPP1_0
-            var result = new TestController().PartialViewSimpleModel();
-#else
             ActionResult result = new PartialViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
-#endif
+
             Action a = () => result.Should().BePartialViewResult().ModelAs<string>().Should().Be("xyx");
             a.Should().Throw<Exception>();
         }
@@ -86,14 +69,11 @@ namespace FluentAssertions.Mvc.Tests
         [Test]
         public void ModelAs_GivenWrongType_ShouldFail()
         {
-#if NETCOREAPP1_0
-            var result = new TestController().PartialViewSimpleModel();
-#else
             ActionResult result = new PartialViewResult
             {
                 ViewData = new ViewDataDictionary("hello")
             };
-#endif
+
             Action a = () => result.Should().BePartialViewResult().ModelAs<int>().Should().Be(2);
             a.Should().Throw<Exception>();
         }

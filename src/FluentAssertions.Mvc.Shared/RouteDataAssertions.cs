@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-#if NETSTANDARD1_6
-using Microsoft.AspNetCore.Routing;
-#else
-using System.Web.Routing;
-#endif
-using FluentAssertions;
+﻿using System.Web.Routing;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
 using System.Diagnostics;
@@ -80,16 +71,16 @@ namespace FluentAssertions.Mvc
             var subjectTyped = Subject as RouteData;
 
             Execute.Assertion
-                    .ForCondition(subjectTyped.DataTokens.ContainsKey(key))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_DataTokens_ContainsKey, key);
+                .ForCondition(subjectTyped.DataTokens.ContainsKey(key))
+                .BecauseOf(reason, reasonArgs)
+                .FailWith(FailureMessages.RouteData_DataTokens_ContainsKey, key);
 
             var actualValue = subjectTyped.DataTokens[key];
 
             Execute.Assertion
-                    .ForCondition(expectedValue.Equals(actualValue))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_DataTokens_HaveValue, key, expectedValue, actualValue);
+                .ForCondition(expectedValue.Equals(actualValue))
+                .BecauseOf(reason, reasonArgs)
+                .FailWith(FailureMessages.RouteData_DataTokens_HaveValue, key, expectedValue, actualValue);
 
             return this;
         }
@@ -111,16 +102,16 @@ namespace FluentAssertions.Mvc
             var subjectTyped = Subject as RouteData;
 
             Execute.Assertion
-                    .ForCondition(subjectTyped.Values.ContainsKey(key))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_Values_ContainsKey, key);
+                .ForCondition(subjectTyped.Values.ContainsKey(key))
+                .BecauseOf(reason, reasonArgs)
+                .FailWith(FailureMessages.RouteData_Values_ContainsKey, key);
 
             var actualValue = subjectTyped.Values[key];
 
             Execute.Assertion
-                    .ForCondition(expectedValue.Equals(actualValue))
-                    .BecauseOf(reason, reasonArgs)
-                    .FailWith(FailureMessages.RouteData_Values_HaveValue, key, expectedValue, actualValue);
+                .ForCondition(expectedValue.Equals(actualValue))
+                .BecauseOf(reason, reasonArgs)
+                .FailWith(FailureMessages.RouteData_Values_HaveValue, key, expectedValue, actualValue);
 
             return this;
         }
