@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Fakes\FakeHttpContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fakes\FakeHttpRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fakes\FakeHttpResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonResultAssertions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PartialViewResultAssertions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RedirectResultAssertions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RedirectToRouteAssertions.cs" />
