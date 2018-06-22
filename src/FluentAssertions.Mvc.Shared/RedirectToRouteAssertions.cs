@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using FluentAssertions.Execution;
 using FluentAssertions.Primitives;
-#if NETSTANDARD1_6
-using Microsoft.AspNetCore.Mvc;
-#else
 using System.Web.Mvc;
-#endif
-using FluentAssertions;
 
 namespace FluentAssertions.Mvc
 {
@@ -40,9 +33,9 @@ namespace FluentAssertions.Mvc
         public RedirectToRouteAssertions WithPermanent(bool expectedPermanent, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion 
-                    .BecauseOf(reason, reasonArgs)
-                    .ForCondition(expectedPermanent == Subject.Permanent)
-                    .FailWith("Expected RedirectToRoute.Permanent to be {0}{reason}, but found {1}", expectedPermanent, Subject.Permanent);
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(expectedPermanent == Subject.Permanent)
+                .FailWith("Expected RedirectToRoute.Permanent to be {0}{reason}, but found {1}", expectedPermanent, Subject.Permanent);
             return this;
         }
 
@@ -60,13 +53,9 @@ namespace FluentAssertions.Mvc
         public RedirectToRouteAssertions WithRouteName(string expectedRouteName, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion 
-                    .BecauseOf(reason, reasonArgs)
-#if NETSTANDARD1_6
-                    .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.OrdinalIgnoreCase))
-#else
-                    .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.InvariantCultureIgnoreCase))
-#endif
-                    .FailWith("Expected RedirectToRoute.RouteName to be {0}{reason}, but found {1}", expectedRouteName, Subject.RouteName);
+                .BecauseOf(reason, reasonArgs)
+                .ForCondition(string.Equals(expectedRouteName, Subject.RouteName, StringComparison.InvariantCultureIgnoreCase))
+                .FailWith("Expected RedirectToRoute.RouteName to be {0}{reason}, but found {1}", expectedRouteName, Subject.RouteName);
 
             return this;
         }
