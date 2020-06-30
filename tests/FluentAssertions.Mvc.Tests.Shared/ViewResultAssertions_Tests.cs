@@ -207,6 +207,31 @@ namespace FluentAssertions.Mvc.Tests
         }
 
         [Test]
+        public void WithViewData_GivenUnexpectedValue_ActualValueIsNull_ShouldFail()
+        {
+            var key = "key1";
+            const object actualValue = null;
+            var expectedValue = "abc";
+            var failureMessage = FailureMessageHelper.Format(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, null);
+
+#if NETCOREAPP1_0
+            var result = new TestController().ViewWithOneViewDataWhereValueIsNull(); // Where is TestController defined?
+#else
+            ActionResult result = new ViewResult
+            {
+                ViewData = new ViewDataDictionary { { key, actualValue } }
+            };
+#endif
+
+            Action a = () => result.Should().BeViewResult().WithViewData(key, expectedValue);
+
+            a.Should()
+                .Throw<Exception>()
+                .WithMessage(failureMessage)
+                .And.Should().NotBeOfType<NullReferenceException>();
+        }
+
+        [Test]
         public void WithViewData_GivenUnexpectedKey_ShouldFail()
         {
             var actualKey = "key1";
