@@ -67,7 +67,7 @@ namespace FluentAssertions.Mvc
             var actualValue = actualViewData[key];
 
             Execute.Assertion
-                    .ForCondition(actualValue.Equals(expectedValue))
+                    .ForCondition(object.Equals(actualValue, expectedValue))
                     .BecauseOf(reason, reasonArgs)
                     .FailWith(FailureMessages.ViewResultBase_ViewData_HaveValue, key, expectedValue, actualValue); 
 

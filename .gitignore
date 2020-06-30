@@ -18,3 +18,4 @@ TestResult.xml
 [Pp]ackages/
 *.nupkg
 /.vs
+_ReSharper.Caches
