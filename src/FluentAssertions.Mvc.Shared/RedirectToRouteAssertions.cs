@@ -73,7 +73,8 @@ namespace FluentAssertions.Mvc
         /// </param>
         public RedirectToRouteAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            Subject.RouteValues.Should().Contain(new KeyValuePair<string, object>(key, expectedValue), reason, reasonArgs);
+            var expected = new KeyValuePair<string, object>(key, expectedValue);
+            Subject.RouteValues.Should().Contain(expected, reason, reasonArgs);
             return this;
         }
 

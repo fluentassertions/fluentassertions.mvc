@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Fluent Assertions extensions for ASP.NET MVC 5.</description>
     <releaseNotes>See https://github.com/fluentassertions/fluentassertions.mvc/releases </releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <copyright>Copyright 2021</copyright>
     <tags>TDD, TDD, Fluent, Mvc, AspNetMvc</tags>
    </metadata>
 </package>
