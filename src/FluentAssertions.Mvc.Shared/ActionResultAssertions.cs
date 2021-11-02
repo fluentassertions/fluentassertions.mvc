@@ -88,6 +88,7 @@ namespace FluentAssertions.Mvc
         /// <summary>
         /// Asserts that the subject is a <see cref="RedirectToRouteResult"/>.
         /// </summary>
+        [CustomAssertion]
         public RedirectToRouteAssertions BeRedirectToRouteResult()
         {
             return BeRedirectToRouteResult(string.Empty, null);
@@ -103,6 +104,7 @@ namespace FluentAssertions.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions BeRedirectToRouteResult(string reason, params object[] reasonArgs)
         {
             Execute.Assertion
