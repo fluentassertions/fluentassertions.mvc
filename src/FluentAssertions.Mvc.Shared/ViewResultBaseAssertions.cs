@@ -16,9 +16,8 @@ namespace FluentAssertions.Mvc
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ViewResultBaseAssertions" /> class.
         /// </summary>
-        public ViewResultBaseAssertions(ViewResultBase subject) : base(subject)
+        protected ViewResultBaseAssertions(ViewResultBase subject) : base(subject)
         {
-            Subject = (T)subject;
         }
 
         /// <summary>

@@ -14,9 +14,8 @@ namespace FluentAssertions.Mvc
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ContentResultAssertions" /> class.
         /// </summary>
-        public RedirectToRouteAssertions(RedirectToRouteResult subject)
+        public RedirectToRouteAssertions(RedirectToRouteResult subject) : base(subject)
         {
-            Subject = subject;
         }
 
         /// <summary>

@@ -27,7 +27,6 @@ namespace FluentAssertions.Mvc
         /// </summary>
 		public ActionResultAssertions (ActionResult subject) : base(subject)
 		{
-			Subject = subject;
 		}
 
         /// <summary>
