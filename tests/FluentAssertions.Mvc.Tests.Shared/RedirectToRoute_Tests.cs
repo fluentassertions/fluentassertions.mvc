@@ -76,8 +76,10 @@ namespace FluentAssertions.Mvc.Tests
             Action a = () => result.Should()
                     .BeRedirectToRouteResult()
                     .WithRouteValue("Id", "11");
-            a.Should().Throw<Exception>()
-                    .WithMessage($"Expected {subjectIdentifier} to contain value \"11\" at key \"Id\", but found \"22\".");            
+
+            a.Should()
+                .Throw<Exception>()
+                .WithMessage($"Expected {subjectIdentifier} to contain value \"11\" at key \"Id\", but found \"22\".");            
         }
 
         [Test]
@@ -138,10 +140,12 @@ namespace FluentAssertions.Mvc.Tests
                 }));
 
             Action a = () => result.Should()
-                    .BeRedirectToRouteResult()
-                    .WithAction("xyz");
-            a.Should().Throw<Exception>()
-                    .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Action\", but found \"index\".");
+                .BeRedirectToRouteResult()
+                .WithAction("xyz");
+
+            a.Should()
+                .Throw<Exception>()
+                .WithMessage($"Expected {subjectIdentifier} to contain value \"xyz\" at key \"Action\", but found \"index\".");
         }
 
         [Test]
@@ -182,7 +186,7 @@ namespace FluentAssertions.Mvc.Tests
         /// <remarks>
         /// The Fluent Assertions library will attempt to determine the name of the subject from the stack trace.
         /// This requires the Unit Tests to be compiled in DEBUG mode in order for it to work successfully.
-        /// If it cannot determne the Subject's Identity, it will fall back to a generic value.
+        /// If it cannot determine the Subject's Identity, it will fall back to a generic value.
         /// This method is an attempt to cope with the different build configurations
         /// ref: http://fluentassertions.com/documentation.html#subject-identification
         /// </remarks>
@@ -191,7 +195,7 @@ namespace FluentAssertions.Mvc.Tests
         {
             var subjectIdentifier = "dictionary";
 #if DEBUG
-            subjectIdentifier = "Subject.RouteValues";
+            subjectIdentifier = "result";
 #endif
             return subjectIdentifier;
         }

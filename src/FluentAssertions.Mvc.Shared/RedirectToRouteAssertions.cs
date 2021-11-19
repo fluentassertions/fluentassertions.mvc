@@ -14,9 +14,8 @@ namespace FluentAssertions.Mvc
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ContentResultAssertions" /> class.
         /// </summary>
-        public RedirectToRouteAssertions(RedirectToRouteResult subject)
+        public RedirectToRouteAssertions(RedirectToRouteResult subject) : base(subject)
         {
-            Subject = subject;
         }
 
         /// <summary>
@@ -30,6 +29,7 @@ namespace FluentAssertions.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions WithPermanent(bool expectedPermanent, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion 
@@ -50,6 +50,7 @@ namespace FluentAssertions.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions WithRouteName(string expectedRouteName, string reason = "", params object[] reasonArgs)
         {
             Execute.Assertion 
@@ -72,9 +73,12 @@ namespace FluentAssertions.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions WithRouteValue(string key, object expectedValue, string reason = "", params object[] reasonArgs)
         {
-            Subject.RouteValues.Should().Contain(new KeyValuePair<string, object>(key, expectedValue), reason, reasonArgs);
+            var expected = new KeyValuePair<string, object>(key, expectedValue);
+
+            ((IEnumerable<KeyValuePair<string, object>>)this.Subject.RouteValues).Should().Contain(expected, reason, reasonArgs);
             return this;
         }
 
@@ -89,6 +93,7 @@ namespace FluentAssertions.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions WithController(string expectedControllerName, string reason = "", params object[] reasonArgs)
         {
             WithRouteValue("Controller", expectedControllerName, reason, reasonArgs);
@@ -106,6 +111,7 @@ namespace FluentAssertions.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions WithAction(string expectedAction, string reason = "", params object[] reasonArgs)
         {
             WithRouteValue("Action", expectedAction, reason, reasonArgs);
@@ -123,6 +129,7 @@ namespace FluentAssertions.Mvc
         /// <param name="reasonArgs">
         /// Zero or more objects to format using the placeholders in <paramref name="reason"/>.
         /// </param>
+        [CustomAssertion]
         public RedirectToRouteAssertions WithArea(string expectedArea, string reason = "", params object[] reasonArgs)
         {
             WithRouteValue("Area", expectedArea, reason, reasonArgs);
