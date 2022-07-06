@@ -1,7 +1,8 @@
-[Bb]in
-[Oo]bj
-*.suo
+.vs/
+bin/
+obj/
 *.user
+
 test-results
 *.pidb
 *.userprefs
@@ -15,9 +16,8 @@ FluentAssertionsMvc.VisualState.xml
 TestResult.xml
 [Tt]est[Rr]esults/
 *.gpState
-[Pp]ackages/
 *.nupkg
-/.vs
+*.snupkg
 
 # ReSharper is a .NET coding add-in
 _ReSharper*/

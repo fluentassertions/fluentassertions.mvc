@@ -1,0 +1,24 @@
+﻿<Project>
+
+  <!--
+    * Imported late: project -> SDK .targets -> NuGet package .targets -> this
+    * Override properties and targets here.
+    https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build
+  -->
+
+  <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <None Include="$(MSBuildThisFileDirectory)license.txt" Link="Properties\license.txt"
+          Pack="true" PackagePath="$(PackageLicenseFile)" CopyToOutputDirectory="Never" />
+  </ItemGroup>
+
+  <!-- <inheritdoc/> support -->
+  <ItemGroup>
+    <PackageReference Include="SauceControl.InheritDoc" Version="1.3.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- SourceLink https://github.com/dotnet/sourcelink/blob/main/README.md -->
+  <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
