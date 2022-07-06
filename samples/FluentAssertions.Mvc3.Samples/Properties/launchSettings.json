@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "FluentAssertions.Mvc3.Samples": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:23934;http://localhost:23935"
+    }
+  }
+}

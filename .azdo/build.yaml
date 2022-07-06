@@ -1,0 +1,124 @@
+# Azure Pipeline
+# https://aka.ms/yaml
+
+name: $(SourceBranchName)[$(counter)]
+
+parameters:
+  - name: configuration
+    displayName: Build Configuration
+    type: string
+    default: Release
+    values:
+      - Debug
+      - Release
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master    # latest stable code
+      - release/* # non-master release sequences
+  tags:
+    include:
+      - release/* # a specific release
+
+# Azure Pipelines triggers on all GitHub PRs by default.  For Azure Repos PRs,
+# it triggers when the target branch has a build policy in the repo settings.
+#
+# When Azure Pipelines builds a PR, it builds refs/pull/{id}/merge, which is an
+# ephemeral merge of the source and target branches.  Ideally, we would prefer
+# to build refs/pull/{id}/head instead, which is just the PR's unmerged code.
+# Azure Pipelines currently does not provide a trigger for the .../head ref, so
+# we make do with the default behavior until someone figures out a better way.
+
+variables:
+  configuration: ${{ parameters.configuration }}
+  counter: $[counter(variables['Build.SourceBranchName'], 0)]
+
+  # Minimize noise from dotnet CLI
+  DOTNET_NOLOGO: 1
+
+  # Use own coverage report; do not generate a new one
+  disable.coverage.autogenerate: 'true'
+
+jobs:
+  - job: build
+    displayName: Build
+    pool:
+      vmImage: windows-latest
+
+    steps:
+      - checkout: self
+        fetchDepth: 10
+        clean: true
+
+      - task: NuGetAuthenticate@0
+        displayName: Authenticate artifacts feed
+
+      - task: DotNetCoreCLI@2
+        displayName: Stamp version
+        inputs:
+          command: build
+          projects: .root.targets
+          configuration: $(configuration)
+          arguments: >-
+            -p:StampOnBuild=true
+            -p:SetAzurePipelinesBuildName=true
+            -p:Branch=$(Build.SourceBranch)
+            -p:Counter=$(counter)
+            -p:RepositoryCommit=$(Build.SourceVersion)
+
+      - task: DotNetCoreCLI@2
+        displayName: Restore packages
+        inputs:
+          command: restore
+          #feedsToUse: config             # Do not use; OGsys.Core dependencies should be few, and all public.
+          #nugetConfigPath: NuGet.config  # Do not use; OGsys.Core dependencies should be few, and all public.
+          verbosityRestore: minimal
+
+      - task: DotNetCoreCLI@2
+        displayName: Build
+        inputs:
+          command: build
+          configuration: $(configuration)
+          arguments: >
+            --no-restore
+            -p:TreatWarningsAsErrors=true
+            -p:GeneratePackageOnBuild=true
+            -p:PackageOutputPath=$(Build.ArtifactStagingDirectory)
+
+      - task: DotNetCoreCLI@2
+        displayName: Test
+        inputs:
+          command: test
+          configuration: $(configuration)
+          arguments: >
+            --no-build
+            --settings Coverlet.runsettings
+
+      - task: reportgenerator@5
+        displayName: Create coverage report
+        inputs:
+          reports: $(Agent.TempDirectory)\**\*.opencover.xml
+          targetdir: $(Agent.TempDirectory)\coverage
+          reporttypes: Cobertura;Badges;HtmlInline_AzurePipelines_Dark
+
+      - task: PublishCodeCoverageResults@1
+        displayName: Publish coverage report
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: $(Agent.TempDirectory)\coverage\Cobertura.xml
+          reportDirectory: $(Agent.TempDirectory)\coverage
+          failIfCoverageEmpty: true
+
+      - task: NuGetCommand@2
+        displayName: Push NuGet package
+        inputs:
+          command: push
+          packagesToPush: $(Build.ArtifactStagingDirectory)\*.nupkg;$(Build.ArtifactStagingDirectory)\*.snupkg
+          nuGetFeedType: internal
+          publishVstsFeed: df8774ca-03c6-4133-ba9b-08db4d915294/75300800-5b2d-4810-bdc5-bb7a692798f4
+          allowPackageConflicts: true
+          verbosityPush: Normal
+
+# code: language=azure-pipelines

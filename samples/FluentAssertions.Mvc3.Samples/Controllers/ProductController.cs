@@ -2,9 +2,9 @@
 
 namespace FluentAssertions.Mvc.Samples.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : Microsoft.AspNetCore.Mvc.Controller
     {
-        public ActionResult List()
+        public Microsoft.AspNetCore.Mvc.ActionResult List()
         {
             return View("Index");
         }
