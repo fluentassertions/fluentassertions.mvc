@@ -1,0 +1,75 @@
+# GitHub Actions workflow
+# https://help.github.com/en/actions/reference
+
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+    # no options
+
+env:
+  # Minimize noise from dotnet CLI
+  DOTNET_NOLOGO: 1
+
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+    #url: https://github.com/actions/virtual-environments
+
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v2
+        #url: https://github.com/actions/checkout
+
+      - name: Restore NuGet Packages
+        run: dotnet restore
+
+      - name: Build
+        run: >
+          dotnet build --no-restore -c Release
+          -p:TreatWarningsAsErrors=true
+          -p:PackageOutputPath=${{ runner.temp }}\bin
+          -p:RepositoryCommit=${{ github.sha }}
+
+      - name: Test
+        run: dotnet test --no-build -c Release
+
+      - name: Save Package
+        uses: actions/upload-artifact@v2
+        #url: https://github.com/actions/upload-artifact
+        with:
+          name: Packages
+          path: ${{ runner.temp }}\bin
+          if-no-files-found: error
+
+      - name: Publish Package
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: >
+          dotnet nuget push "${{ runner.temp }}\bin\*.nupkg"
+          -s https://api.nuget.org/v3/index.json
+          -k $env:NUGET_API_KEY
+          --skip-duplicate
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        #url: https://github.com/ncipollo/release-action
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          name: ${{ github.ref_name }}
+          prerelease: ${{ contains('-', github.ref_name) }}
+          draft: true
+          artifacts: ${{ runner.temp }}\bin\*nupkg
+          artifactErrorsFailBuild: true
+          token: ${{ secrets.GITHUB_TOKEN }}
